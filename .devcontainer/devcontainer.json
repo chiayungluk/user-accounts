@@ -1,12 +1,8 @@
 {
-	"name": "Node.js & TypeScript",
-	"build": {
-		"dockerfile": "Dockerfile",
-		// Update 'VARIANT' to pick a Node version: 16, 14, 12.
-		// Append -bullseye or -buster to pin to an OS version.
-		// Use -bullseye variants on local arm64/Apple Silicon.
-		"args": { "VARIANT": "18-bullseye" }
-	},
+	"name": "Node.js & TypeScript & Nest & MongoDB",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/user-accounts",
 
 	// Configure tool-specific properties.
 	"customizations": {
@@ -27,14 +23,14 @@
 				"leizongmin.node-module-intellisense",
 				"christian-kohler.path-intellisense",
 				"christian-kohler.npm-intellisense",
-				"ms-vscode.js-debug",
-				"ms-vscode.vscode-typescript-next"
+				"ms-vscode.vscode-typescript-next",
+				"mongodb.mongodb-vscode"
 			]
 		}
 	},	
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [3000],
+	"forwardPorts": [3000, 27017],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "npm install",

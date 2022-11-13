@@ -1,7 +1,7 @@
 {
-  "name": "try_node_nest",
+  "name": "user-accounts",
   "version": "1.0.0",
-  "description": "Node.js project built on NestJS",
+  "description": "User Accounts",
   "author": "Chiayung Luk <chiayung.luk@gmail.com>",
   "license": "MIT",
   "private": true,
