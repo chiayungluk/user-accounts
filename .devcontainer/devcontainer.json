@@ -1,0 +1,52 @@
+{
+	"name": "Node.js & TypeScript",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick a Node version: 16, 14, 12.
+		// Append -bullseye or -buster to pin to an OS version.
+		// Use -bullseye variants on local arm64/Apple Silicon.
+		"args": { "VARIANT": "18-bullseye" }
+	},
+
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {},
+			
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"GitHub.vscode-pull-request-github",
+				"KnisterPeter.vscode-commitizen",
+				"Gruntfuggly.todo-tree",
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"mgmcdermott.vscode-language-babel",
+				"leizongmin.node-module-intellisense",
+				"christian-kohler.path-intellisense",
+				"christian-kohler.npm-intellisense",
+				"ms-vscode.js-debug",
+				"ms-vscode.vscode-typescript-next"
+			]
+		}
+	},	
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [3000],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "npm install",
+
+	// Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "node",
+	"features": {
+		"ghcr.io/devcontainers/features/docker-from-docker:1": {},
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {}
+	},
+	// Mounting kubeconfig in local file system to let 'kubectl' and 'helm' access the Kubernetes cluster in Docker Desktop.
+	// Mounting the local file system is not supported in GitHub Codespaces, use built-in 'minikube' to start a cluster instead.
+	"mounts": ["source=${localEnv:HOME}/.kube/config,target=/home/node/.kube/config,type=bind,consistency=cached"]
+}
