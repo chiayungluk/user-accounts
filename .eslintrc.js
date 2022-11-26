@@ -20,5 +20,7 @@ module.exports = {
     jest: true,
   },
   ignorePatterns: ['.eslintrc.js'],
-  rules: {},
+  rules: {
+    'class-methods-use-this': 'off',
+  },
 };
